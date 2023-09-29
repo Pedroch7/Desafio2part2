@@ -1,0 +1,59 @@
+programa {    
+    inclua biblioteca Util --> u
+    cadeia nomes[4] = {"Roger", "Jordan", "Deise", "Willian", "Rafael"}
+    cadeia nome, nomesorteado, novamente, coracao
+    inteiro vidas
+    logico continue
+
+    funcao vidaperdida() {
+        coracao = ""
+        para (inteiro i = 1; i <= vidas; i++) {
+            coracao += " \u2764 "
+        }
+    }
+
+    funcao inicio() {
+        jogoInicial()
+        jogoFibonacci()
+        jogoCalculadora()
+    }
+
+    funcao jogoInicial() {
+        vidas = 10
+        continue = verdadeiro
+
+        enquanto (continue) {
+            nomesorteado = nomes[u.sorteia(0, 4)]
+            escreva("[Vida: ", vidas, coracao, "]\n")
+            escreva("------------------------------------------------------\n")
+            escreva("O MONSTRO ESTa VINDO ATRaS DE VOCê!!!!!\n")
+            escreva("------------------------------------------------------\n")
+            escreva("Existe uma pessoa certa que pode ajudar voc� a se esconder dele.\n")
+            escreva("Op��es: ", nomes, "\n")
+
+            escreva("\nDigite um nome: ")
+            leia(nome)
+
+            se (nome == nomesorteado) {
+                escreva("Voc� acertou, ", nomesorteado, " vai te ajudar. \n")
+                u.aguarde(3000)
+                continue = falso
+            } senao {
+                vidas--
+                escreva("Voc� errou! A pessoa ideal para lhe salvar era: ", nomesorteado)
+                escreva("\nPrecione qualquer tecla para tentar novamente: ")
+                leia(novamente)
+                limpa()
+                se (vidas <= 0) {
+                    continue = verdadeiro
+                    escreva("GAME OVER \n")
+                    escreva("------------------------------------------------------\n")
+                    escreva("Pr�ximo Jogo !!!!!\n")
+                    escreva("------------------------------------------------------\n")
+                }
+            }
+        }
+    }
+
+    // ... (código das outras funções)
+}
